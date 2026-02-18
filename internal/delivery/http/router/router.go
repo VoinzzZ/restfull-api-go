@@ -3,14 +3,16 @@ package router
 import (
 	"net/http"
 	"restfull-api-go/internal/delivery/http/handler"
+	"restfull-api-go/internal/delivery/http/middleware"
 )
 
-func SetupRouter(userHandler *handler.UserHandler) *http.ServeMux {
+func SetupRouter(userHandler *handler.UserHandler) http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("POST /api/v1/users", userHandler.CreateUser)
-	mux.HandleFunc("GET /api/v1/users/{id}", userHandler.GetUserByID)
-	mux.HandleFunc("GET /api/v1/users", userHandler.GetAllUsers)
-	mux.HandleFunc("PUT /api/v1/users/{id}", userHandler.UpdateUser)
-	mux.HandleFunc("DELETE /api/v1/users/{id}", userHandler.DeleteUser)
-	return mux
+
+	registerUserRoutes(mux, userHandler)
+
+	var h http.Handler = mux
+	h = middleware.Logger(h)
+
+	return h
 }
