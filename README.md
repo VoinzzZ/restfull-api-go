@@ -1,4 +1,4 @@
-# 🚀 Go RESTful API — User Management
+# 🚀 Go RESTful API
 
 [![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat&logo=go)](https://golang.org/dl/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/pulls)
